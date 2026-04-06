@@ -1,0 +1,41 @@
+<nav class="navbar" id="navbar">
+  <div class="container"><div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/worksbyjdlogo.png" alt="WORKS by JD" class="nav-logo-img"/>
+    </a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <button class="nav-link<%= activePage === 'services' ? ' active' : '' %>">Services <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dropdown-menu">
+          <a href="/services">All Services</a>
+          <div class="dropdown-divider"></div>
+          <a href="/services/kitchens">Kitchen Remodeling</a>
+          <a href="/services/bathrooms">Bathroom Remodeling</a>
+          <a href="/services/full-house-remodel">Home Remodeling</a>
+          <a href="/painting-services">Painting Services</a>
+          <a href="/services/restoration">Restoration Services</a>
+          <a href="/home-remodeling">Home Additions</a>
+          <a href="/services/outdoor-living">Outdoor Living</a>
+          <a href="/services/custom-cabinetry">Custom Cabinetry</a>
+          <a href="/services/custom-carpentry">Custom Carpentry</a>
+        </div>
+      </div>
+      <a href="/portfolio" class="nav-link<%= activePage === 'portfolio' ? ' active' : '' %>">Portfolio</a>
+      <div class="nav-dropdown">
+        <button class="nav-link<%= activePage === 'about' ? ' active' : '' %>">About <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dropdown-menu">
+          <a href="/about">About Us</a>
+          <a href="/about/our-story">Our Story</a>
+          <a href="/about/meet-the-team">Meet the Team</a>
+        </div>
+      </div>
+      <a href="/faq" class="nav-link<%= activePage === 'faq' ? ' active' : '' %>">FAQ</a>
+      <a href="/warranty" class="nav-link<%= activePage === 'warranty' ? ' active' : '' %>">Warranty</a>
+      <a href="/better-together" class="nav-link<%= activePage === 'community' ? ' active' : '' %>">Community</a>
+    </div>
+    <div class="nav-right">
+      <a href="/contact" class="btn btn-primary btn-sm">Start a Project</a>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div></div>
+</nav>

@@ -1,0 +1,60 @@
+<%- include('layout-top', { pageTitle: 'Careers', activePage: 'careers' }) %>
+
+<div class="page-header" style="display:flex;justify-content:space-between;align-items:center;">
+  <div>
+    <h1 class="page-title">Career Openings</h1>
+    <p class="page-subtitle">Manage job listings shown on the careers page.</p>
+  </div>
+  <a href="/admin/careers/new" class="btn btn-ember">+ New Position</a>
+</div>
+
+<% if (careers.length > 0) { %>
+<div class="card">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Type</th>
+        <th>Location</th>
+        <th>Salary</th>
+        <th>Status</th>
+        <th>Order</th>
+        <th style="text-align:right;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% careers.forEach(function(c) { %>
+      <tr>
+        <td style="font-weight:600;"><%= c.title %></td>
+        <td><%= c.type %></td>
+        <td><%= c.location %></td>
+        <td><%= c.salary || '—' %></td>
+        <td>
+          <span class="badge badge-<%= c.active ? 'new' : 'archived' %>"><%= c.active ? 'Active' : 'Inactive' %></span>
+        </td>
+        <td><%= c.order %></td>
+        <td style="text-align:right;white-space:nowrap;">
+          <form method="POST" action="/admin/careers/<%= c.id %>/toggle" style="display:inline;">
+            <button type="submit" class="btn btn-outline btn-sm"><%= c.active ? 'Deactivate' : 'Activate' %></button>
+          </form>
+          <a href="/admin/careers/<%= c.id %>/edit" class="btn btn-outline btn-sm">Edit</a>
+          <form method="POST" action="/admin/careers/<%= c.id %>/delete" style="display:inline;" onsubmit="return confirm('Delete this position?')">
+            <button type="submit" class="btn btn-red btn-sm">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }); %>
+    </tbody>
+  </table>
+</div>
+<% } else { %>
+<div class="card">
+  <div class="empty">
+    <div class="empty-icon">💼</div>
+    <p>No career openings yet.</p>
+    <a href="/admin/careers/new" class="btn btn-ember" style="margin-top:16px;">Create First Position</a>
+  </div>
+</div>
+<% } %>
+
+<%- include('layout-bottom') %>

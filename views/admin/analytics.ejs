@@ -1,0 +1,299 @@
+<%- include('layout-top', { pageTitle: 'Analytics', activePage: 'analytics' }) %>
+
+<div class="page-header" style="display:flex;justify-content:space-between;align-items:center;">
+  <div>
+    <h1 class="page-title">Analytics</h1>
+    <p class="page-subtitle">Detailed traffic data for your site.</p>
+  </div>
+  <form action="/admin/analytics/clear" method="POST" onsubmit="return confirm('Clear all analytics data? This cannot be undone.');">
+    <button type="submit" class="btn btn-sm btn-outline" style="color:#DC2626;border-color:#DC2626;">Clear All Data</button>
+  </form>
+</div>
+
+<!-- Time range selector -->
+<div style="display:flex;gap:8px;margin-bottom:24px;">
+  <a href="/admin/analytics?days=7" class="btn btn-sm <%= days === 7 ? 'btn-ember' : 'btn-outline' %>">7 Days</a>
+  <a href="/admin/analytics?days=30" class="btn btn-sm <%= days === 30 ? 'btn-ember' : 'btn-outline' %>">30 Days</a>
+  <a href="/admin/analytics?days=90" class="btn btn-sm <%= days === 90 ? 'btn-ember' : 'btn-outline' %>">90 Days</a>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-label">Total Views</div>
+    <div class="stat-value"><%= totalViews.toLocaleString() %></div>
+    <div class="stat-sub">last <%= days %> days</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Unique Visitors</div>
+    <div class="stat-value"><%= totalUniqueVisitors.toLocaleString() %></div>
+    <div class="stat-sub"><%= totalViews ? ((totalUniqueVisitors / totalViews) * 100).toFixed(0) : 0 %>% of total</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Repeat Views</div>
+    <div class="stat-value"><%= (totalViews - totalUniqueVisitors).toLocaleString() %></div>
+    <div class="stat-sub">returning traffic</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Daily Average</div>
+    <div class="stat-value"><%= dailyStats.length ? Math.round(totalViews / dailyStats.length) : 0 %></div>
+    <div class="stat-sub">views per day</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Peak Day</div>
+    <% var peak = dailyStats.reduce(function(best, d){ return (d.totalViews||0) > (best.totalViews||0) ? d : best; }, {totalViews:0}); %>
+    <div class="stat-value"><%= peak.totalViews || 0 %></div>
+    <div class="stat-sub"><%= peak.date || '—' %></div>
+  </div>
+</div>
+
+<!-- Traffic area chart -->
+<div class="card">
+  <div class="card-title">Daily Views — Last <%= days %> Days</div>
+  <% if (dailyStats.length > 0) { %>
+    <div style="position:relative;height:300px;">
+      <canvas id="trafficChart"></canvas>
+    </div>
+  <% } else { %>
+    <div class="empty"><p>No data for this period.</p></div>
+  <% } %>
+</div>
+
+<!-- Row: Page Categories (doughnut) + Devices (doughnut) + Referrers -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
+
+  <!-- Page categories doughnut -->
+  <div class="card">
+    <div class="card-title">Traffic by Section</div>
+    <div style="position:relative;height:240px;">
+      <canvas id="categoriesChart"></canvas>
+    </div>
+    <table class="table" style="margin-top:12px;">
+      <tbody>
+      <% Object.entries(categories).filter(function(e){ return e[1] > 0; }).sort(function(a,b){ return b[1]-a[1]; }).forEach(function(e) { %>
+        <tr><td><%= e[0] %></td><td style="text-align:right;font-weight:600;"><%= e[1] %></td><td style="text-align:right;color:var(--admin-muted);"><%= totalViews ? ((e[1]/totalViews)*100).toFixed(1) : 0 %>%</td></tr>
+      <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Device breakdown doughnut -->
+  <div class="card">
+    <div class="card-title">Devices</div>
+    <div style="position:relative;height:240px;">
+      <canvas id="devicesChart"></canvas>
+    </div>
+    <table class="table" style="margin-top:12px;">
+      <tbody>
+      <% var totalDevices = deviceCounts.Desktop + deviceCounts.Mobile + deviceCounts.Tablet || 1; %>
+      <tr><td>Desktop</td><td style="text-align:right;font-weight:600;"><%= deviceCounts.Desktop %></td><td style="text-align:right;color:var(--admin-muted);"><%= ((deviceCounts.Desktop/totalDevices)*100).toFixed(1) %>%</td></tr>
+      <tr><td>Mobile</td><td style="text-align:right;font-weight:600;"><%= deviceCounts.Mobile %></td><td style="text-align:right;color:var(--admin-muted);"><%= ((deviceCounts.Mobile/totalDevices)*100).toFixed(1) %>%</td></tr>
+      <tr><td>Tablet</td><td style="text-align:right;font-weight:600;"><%= deviceCounts.Tablet %></td><td style="text-align:right;color:var(--admin-muted);"><%= ((deviceCounts.Tablet/totalDevices)*100).toFixed(1) %>%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Referrers -->
+  <div class="card">
+    <div class="card-title">Top Referrers</div>
+    <% if (topReferrers.length > 0) { %>
+      <div style="position:relative;height:240px;">
+        <canvas id="referrersChart"></canvas>
+      </div>
+      <table class="table" style="margin-top:12px;">
+        <tbody>
+        <% topReferrers.forEach(function(r) { %>
+          <tr><td><%= r.source %></td><td style="text-align:right;font-weight:600;"><%= r.count %></td></tr>
+        <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="empty"><p>No referrer data yet.</p></div>
+    <% } %>
+  </div>
+</div>
+
+<!-- Row: Pages table + Recent visits -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px;">
+  <!-- All pages breakdown -->
+  <div class="card">
+    <div class="card-title">All Pages by Views</div>
+    <% if (topPages.length > 0) { %>
+      <div style="position:relative;height:320px;">
+        <canvas id="allPagesChart"></canvas>
+      </div>
+      <table class="table" style="margin-top:16px;">
+        <thead><tr><th>#</th><th>Page</th><th style="text-align:right;">Total</th><th style="text-align:right;">Unique</th><th style="text-align:right;">Repeat</th><th style="text-align:right;">%</th></tr></thead>
+        <tbody>
+        <% topPages.forEach(function(p, i) { %>
+          <tr>
+            <td style="color:var(--admin-muted);"><%= i + 1 %></td>
+            <td><%= p.page %></td>
+            <td style="text-align:right;font-weight:600;"><%= p.count %></td>
+            <td style="text-align:right;color:#C06A2C;font-weight:600;"><%= p.unique %></td>
+            <td style="text-align:right;color:var(--admin-muted);"><%= p.count - p.unique %></td>
+            <td style="text-align:right;color:var(--admin-muted);"><%= totalViews ? ((p.count / totalViews) * 100).toFixed(1) : 0 %>%</td>
+          </tr>
+        <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="empty"><p>No page data yet.</p></div>
+    <% } %>
+  </div>
+
+  <!-- Recent visits live feed -->
+  <div class="card">
+    <div class="card-title">Recent Visits</div>
+    <% if (recentViews.length > 0) { %>
+      <div style="max-height:600px;overflow-y:auto;">
+        <table class="table">
+          <thead><tr><th>Page</th><th>Referrer</th><th>Time</th></tr></thead>
+          <tbody>
+          <% recentViews.forEach(function(v) { %>
+            <tr>
+              <td><%= v.path %></td>
+              <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;"><%= v.referrer ? v.referrer.replace(/https?:\/\//, '').split('/')[0] : 'Direct' %></td>
+              <td style="white-space:nowrap;font-size:12px;"><%= v.timestamp ? new Date(v.timestamp._seconds ? v.timestamp._seconds * 1000 : v.timestamp).toLocaleString() : '—' %></td>
+            </tr>
+          <% }); %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <div class="empty"><p>No recent visits.</p></div>
+    <% } %>
+  </div>
+</div>
+
+<script>
+(function() {
+  var ember = '#C06A2C', dark = '#1A1714';
+  var chartColors = ['#C06A2C','#D4883E','#E0A05C','#1A1714','#3D352C','#5C4D3E','#8A7E72','#B5AA9C','#D4CFC7','#F0EDE8'];
+  var tooltipOpts = { backgroundColor: dark, padding: 12, cornerRadius: 8, bodyFont: { family: 'Inter' }, titleFont: { family: 'Inter' } };
+
+  <% if (dailyStats.length > 0) { %>
+  // ── Traffic area chart — Total vs Unique
+  new Chart(document.getElementById('trafficChart'), {
+    type: 'line',
+    data: {
+      labels: <%- JSON.stringify(dailyStats.map(function(d){ return d.date; })) %>,
+      datasets: [
+        {
+          label: 'Total Views',
+          data: <%- JSON.stringify(dailyStats.map(function(d){ return d.totalViews || 0; })) %>,
+          borderColor: ember,
+          backgroundColor: 'rgba(192,106,44,0.08)',
+          fill: true, tension: 0.35, borderWidth: 2.5,
+          pointRadius: 2, pointBackgroundColor: ember, pointHoverRadius: 6,
+        },
+        {
+          label: 'Unique Visitors',
+          data: <%- JSON.stringify(dailyStats.map(function(d){ return d.uniqueVisitors || 0; })) %>,
+          borderColor: dark,
+          backgroundColor: 'rgba(26,23,20,0.06)',
+          fill: true, tension: 0.35, borderWidth: 2, borderDash: [5,3],
+          pointRadius: 2, pointBackgroundColor: dark, pointHoverRadius: 6,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: true, position: 'top', labels: { padding: 16, font: { size: 11, family: 'Inter' }, usePointStyle: true, pointStyle: 'line' } },
+        tooltip: tooltipOpts,
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#8A7E72', maxTicksLimit: 12 } },
+        y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 11 }, color: '#8A7E72', precision: 0 } }
+      }
+    }
+  });
+  <% } %>
+
+  // ── Categories doughnut
+  new Chart(document.getElementById('categoriesChart'), {
+    type: 'doughnut',
+    data: {
+      labels: <%- JSON.stringify(Object.keys(categories)) %>,
+      datasets: [{ data: <%- JSON.stringify(Object.values(categories)) %>, backgroundColor: chartColors, borderWidth: 0 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '65%',
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 12, font: { size: 11, family: 'Inter' }, color: '#1A1714' } },
+        tooltip: tooltipOpts,
+      }
+    }
+  });
+
+  // ── Devices doughnut
+  new Chart(document.getElementById('devicesChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Desktop','Mobile','Tablet'],
+      datasets: [{ data: [<%= deviceCounts.Desktop %>, <%= deviceCounts.Mobile %>, <%= deviceCounts.Tablet %>], backgroundColor: [dark,'#C06A2C','#D4CFC7'], borderWidth: 0 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '65%',
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 12, font: { size: 11, family: 'Inter' }, color: '#1A1714' } },
+        tooltip: tooltipOpts,
+      }
+    }
+  });
+
+  <% if (topReferrers.length > 0) { %>
+  // ── Referrers horizontal bar
+  new Chart(document.getElementById('referrersChart'), {
+    type: 'bar',
+    data: {
+      labels: <%- JSON.stringify(topReferrers.slice(0,6).map(function(r){ return r.source; })) %>,
+      datasets: [{ data: <%- JSON.stringify(topReferrers.slice(0,6).map(function(r){ return r.count; })) %>, backgroundColor: chartColors, borderRadius: 4, borderSkipped: false }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: tooltipOpts },
+      scales: {
+        x: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { precision: 0, font: { size: 10 }, color: '#8A7E72' } },
+        y: { grid: { display: false }, ticks: { font: { size: 11 }, color: dark } }
+      }
+    }
+  });
+  <% } %>
+
+  <% if (topPages.length > 0) { %>
+  // ── All pages stacked bar — Unique vs Repeat
+  new Chart(document.getElementById('allPagesChart'), {
+    type: 'bar',
+    data: {
+      labels: <%- JSON.stringify(topPages.slice(0,12).map(function(p){ return p.page; })) %>,
+      datasets: [
+        {
+          label: 'Unique',
+          data: <%- JSON.stringify(topPages.slice(0,12).map(function(p){ return p.unique || 0; })) %>,
+          backgroundColor: ember, borderRadius: 4, borderSkipped: false,
+        },
+        {
+          label: 'Repeat',
+          data: <%- JSON.stringify(topPages.slice(0,12).map(function(p){ return (p.count || 0) - (p.unique || 0); })) %>,
+          backgroundColor: '#D4CFC7', borderRadius: 4, borderSkipped: false,
+        }
+      ]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: true, position: 'top', labels: { padding: 12, font: { size: 11, family: 'Inter' }, usePointStyle: true, pointStyle: 'rect' } },
+        tooltip: tooltipOpts,
+      },
+      scales: {
+        x: { stacked: true, beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { precision: 0, font: { size: 10 }, color: '#8A7E72' } },
+        y: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 }, color: dark } }
+      }
+    }
+  });
+  <% } %>
+})();
+</script>
+
+<%- include('layout-bottom') %>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: "Services — WORKS by JD · Design-Build Remodeling · North Shore Boston", description: "WORKS by JD offers full-service Design-Build remodeling: kitchens, bathrooms, outdoor living, full home remodels, additions, decking, windows & doors, and more on the North Shore of Boston." }) %>
+<body>
+<%- include('partials/navbar', { activePage: 'services' }) %>
+<%- include('partials/mobile-menu') %>
+<div class="nav-offset"></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-accent"></div>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Home</a><span class="breadcrumb-sep">/</span><span>Services</span>
+    </div>
+    <div class="page-hero-eyebrow">What We Build</div>
+    <h1 class="page-hero-title">Every project. One team.</h1>
+    <p class="page-hero-body">From a single bathroom refresh to a full whole-home transformation — WORKS by JD handles design, permitting, and construction under one roof.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="/contact" class="btn btn-primary btn-lg">Get a Free Consultation</a>
+      <a href="/portfolio" class="btn btn-dark btn-lg">View Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="section-pad bg-bg">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-eyebrow">Our Services</div>
+      <h2 class="section-title">Everything your home needs</h2>
+      <p class="section-body">Backed by our industry-leading <strong>7-Year Workmanship Warranty</strong> on every project.</p>
+    </div>
+
+    <!-- Primary Services -->
+    <div class="section-eyebrow" style="margin-bottom:20px;">Signature services</div>
+    <div class="services-grid">
+      <a href="/services/kitchens" class="service-card service-card-has-img">
+        <div class="service-card-img"><img src="/images/kitchen-remodeling.jpg" alt="Kitchen Remodeling"></div>
+        <div class="service-card-content">
+          <div class="service-card-name">Kitchen Remodeling</div>
+          <p class="service-card-desc">Custom cabinetry, luxury countertops, fully integrated appliances, and complete layout redesigns. From $40K–$150K+.</p>
+          <span class="service-card-link">Learn More</span>
+        </div>
+      </a>
+      <a href="/services/bathrooms" class="service-card service-card-has-img">
+        <div class="service-card-img"><img src="/images/bathroom-remodeling.jpg" alt="Bathroom Remodeling"></div>
+        <div class="service-card-content">
+          <div class="service-card-name">Bathroom Remodeling</div>
+          <p class="service-card-desc">Spa-quality master suites, custom tile &amp; stone, radiant heating, freestanding tubs, and bespoke vanities. From $25K–$120K+.</p>
+          <span class="service-card-link">Learn More</span>
+        </div>
+      </a>
+      <a href="/services/full-house-remodel" class="service-card service-card-has-img">
+        <div class="service-card-img"><img src="/images/home-remodeling.jpg" alt="Home Remodeling"></div>
+        <div class="service-card-content">
+          <div class="service-card-name">Home Remodeling</div>
+          <p class="service-card-desc">Complete gut renovations, floor plan reworks, and structural changes. The ultimate whole-home reinvention. From $200K+.</p>
+          <span class="service-card-link">Learn More</span>
+        </div>
+      </a>
+      <a href="/painting-services" class="service-card service-card-has-img">
+        <div class="service-card-img"><img src="/images/painting-services.jpg" alt="Painting Services"></div>
+        <div class="service-card-content">
+          <div class="service-card-name">Painting Services</div>
+          <p class="service-card-desc">Interior and exterior painting, wallpaper installation, and color consultation by master-level craftsmen. From $3K–$40K+.</p>
+          <span class="service-card-link">Learn More</span>
+        </div>
+      </a>
+      <a href="/services/restoration" class="service-card service-card-has-img">
+        <div class="service-card-img"><img src="/images/restoration-services.jpg" alt="Restoration Services"></div>
+        <div class="service-card-content">
+          <div class="service-card-name">Restoration Services</div>
+          <p class="service-card-desc">Sensitive restoration that honors a home's original character while carefully integrating modern comforts and structural integrity.</p>
+          <span class="service-card-link">Learn More</span>
+        </div>
+      </a>
+      <a href="/home-remodeling" class="service-card service-card-has-img">
+        <div class="service-card-img"><img src="/images/home-additions.jpg" alt="Home Additions"></div>
+        <div class="service-card-content">
+          <div class="service-card-name">Home Additions</div>
+          <p class="service-card-desc">Room additions, bump-outs, second-floor builds, and in-law suites designed to match your home's existing architecture.</p>
+          <span class="service-card-link">Learn More</span>
+        </div>
+      </a>
+      <a href="/services/outdoor-living" class="service-card service-card-has-img">
+        <div class="service-card-img"><img src="/images/outdoor-living.jpg" alt="Outdoor Living"></div>
+        <div class="service-card-content">
+          <div class="service-card-name">Outdoor Living</div>
+          <p class="service-card-desc">Custom decks, patios, outdoor kitchens, fire pits, pergolas, and whole-system lighting &amp; audio. From $30K–$200K+.</p>
+          <span class="service-card-link">Learn More</span>
+        </div>
+      </a>
+      <a href="/services/custom-cabinetry" class="service-card service-card-has-img">
+        <div class="service-card-img"><img src="/images/custom-cabinetry.jpg" alt="Custom Cabinetry"></div>
+        <div class="service-card-content">
+          <div class="service-card-name">Custom Cabinetry</div>
+          <p class="service-card-desc">Built from scratch by our master carpenters — designed for a perfect fit, superior function, and timeless style. From $10K–$80K+.</p>
+          <span class="service-card-link">Learn More</span>
+        </div>
+      </a>
+      <a href="/services/custom-carpentry" class="service-card service-card-has-img">
+        <div class="service-card-img"><img src="/images/custom-carpentry.jpg" alt="Custom Carpentry"></div>
+        <div class="service-card-content">
+          <div class="service-card-name">Custom Carpentry</div>
+          <p class="service-card-desc">From elegant built-ins to intricate millwork — our master carpenters add architectural character and bespoke details to every room.</p>
+          <span class="service-card-link">Learn More</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN BUILD PROMISE -->
+<section class="section-pad" style="background:white;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div>
+        <div class="section-eyebrow">The Promise</div>
+        <h2 class="section-title">One team. One contract. Zero stress.</h2>
+        <p class="section-body-wide" style="margin-bottom:24px;">
+          Traditional contractors hand off between designers and builders, creating gaps, finger-pointing, and cost overruns. Our Design-Build model eliminates all of that. You work with one accountable team from the first concept sketch to the day we hand you the keys.
+        </p>
+        <div class="includes-list">
+          <div class="include-item"><div class="include-check">✓</div><span>Single point of contact throughout your project</span></div>
+          <div class="include-item"><div class="include-check">✓</div><span>No miscommunication between designer and contractor</span></div>
+          <div class="include-item"><div class="include-check">✓</div><span>Faster timelines and tighter budget control</span></div>
+          <div class="include-item"><div class="include-check">✓</div><span>Private client portal for real-time project tracking</span></div>
+          <div class="include-item"><div class="include-check">✓</div><span>7-Year Workmanship Warranty on every scope</span></div>
+        </div>
+        <div style="margin-top:32px;">
+          <a href="/contact" class="btn btn-primary">Start With a Free Consultation</a>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--forge-900);border-radius:var(--r-xl);padding:40px;box-shadow:var(--shadow-clay-dark);border:1px solid var(--forge-700);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ember-400);margin-bottom:20px;">Typical project ranges</div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);">
+              <span style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.75);">Kitchen Remodel</span>
+              <span style="font-family:monospace;font-size:13px;color:var(--ember-400);font-weight:600;">$40K – $150K+</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);">
+              <span style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.75);">Bathroom Remodel</span>
+              <span style="font-family:monospace;font-size:13px;color:var(--ember-400);font-weight:600;">$25K – $120K+</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);">
+              <span style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.75);">Outdoor Living</span>
+              <span style="font-family:monospace;font-size:13px;color:var(--ember-400);font-weight:600;">$30K – $150K+</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);">
+              <span style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.75);">Home Addition</span>
+              <span style="font-family:monospace;font-size:13px;color:var(--ember-400);font-weight:600;">$100K – $400K+</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.75);">Full House Remodel</span>
+              <span style="font-family:monospace;font-size:13px;color:var(--ember-400);font-weight:600;">$200K – $1M+</span>
+            </div>
+          </div>
+          <div style="margin-top:28px;padding:14px 16px;background:rgba(212,105,43,0.12);border-radius:var(--r-md);border:1px solid rgba(212,105,43,0.2);font-size:12px;color:var(--ember-300);">
+            These are representative ranges. Your project cost depends on scope, materials, and site conditions. Contact us for a precise estimate.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-eyebrow">Get Started</div>
+      <h2 class="cta-title">Ready to see what's possible?</h2>
+      <p class="cta-body">Schedule a free, no-obligation consultation and let us show you how the Design-Build process can turn your vision into reality.</p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-primary btn-lg">Schedule Free Consultation</a>
+        <a href="/portfolio" class="btn btn-outline btn-lg" style="background:transparent;color:white;border-color:rgba(255,255,255,0.2);box-shadow:none;">See Our Work First</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

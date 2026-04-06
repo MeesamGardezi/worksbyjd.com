@@ -1,0 +1,57 @@
+<%- include('layout-top', { pageTitle: 'Contact Detail', activePage: 'contacts' }) %>
+
+<div class="page-header">
+  <a href="/admin/contacts" style="color:var(--admin-muted);text-decoration:none;font-size:14px;">← Back to Contacts</a>
+  <h1 class="page-title" style="margin-top:12px;"><%= contact.fname %> <%= contact.lname %></h1>
+  <p class="page-subtitle">Submitted <%= contact.timestamp ? new Date(contact.timestamp._seconds ? contact.timestamp._seconds * 1000 : contact.timestamp).toLocaleString() : 'Unknown' %></p>
+</div>
+
+<div style="display:grid;grid-template-columns:1.5fr 1fr;gap:24px;">
+  <div class="card">
+    <div class="card-title">Submission Details</div>
+    <table class="table">
+      <tr><td style="font-weight:600;width:160px;">Name</td><td><%= contact.fname %> <%= contact.lname %></td></tr>
+      <tr><td style="font-weight:600;">Email</td><td><a href="mailto:<%= contact.email %>"><%= contact.email %></a></td></tr>
+      <tr><td style="font-weight:600;">Phone</td><td><%= contact.phone || '—' %></td></tr>
+      <tr><td style="font-weight:600;">Project Address</td><td><%= contact.address || '—' %></td></tr>
+      <tr><td style="font-weight:600;">Service</td><td><%= contact.service || '—' %></td></tr>
+      <tr><td style="font-weight:600;">Budget</td><td><%= contact.budget || '—' %></td></tr>
+      <tr><td style="font-weight:600;">Timeline</td><td><%= contact.timeline || '—' %></td></tr>
+      <tr><td style="font-weight:600;">Message</td><td><%= contact.message || '—' %></td></tr>
+    </table>
+  </div>
+
+  <div>
+    <!-- Status update -->
+    <div class="card">
+      <div class="card-title">Status</div>
+      <form method="POST" action="/admin/contacts/<%= contact.id %>/status">
+        <div class="form-group">
+          <select name="status" class="form-select">
+            <option value="new" <%= contact.status === 'new' ? 'selected' : '' %>>New</option>
+            <option value="contacted" <%= contact.status === 'contacted' ? 'selected' : '' %>>Contacted</option>
+            <option value="closed" <%= contact.status === 'closed' ? 'selected' : '' %>>Closed — Won</option>
+            <option value="archived" <%= contact.status === 'archived' ? 'selected' : '' %>>Archived</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-ember btn-sm">Update Status</button>
+      </form>
+    </div>
+
+    <!-- Actions -->
+    <div class="card">
+      <div class="card-title">Actions</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <a href="mailto:<%= contact.email %>?subject=Your%20WORKS%20by%20JD%20Project" class="btn btn-outline btn-sm">✉ Email Client</a>
+        <% if (contact.phone) { %>
+          <a href="tel:<%= contact.phone %>" class="btn btn-outline btn-sm">📞 Call Client</a>
+        <% } %>
+        <form method="POST" action="/admin/contacts/<%= contact.id %>/delete" onsubmit="return confirm('Delete this submission?');" style="margin:0;">
+          <button type="submit" class="btn btn-red btn-sm" style="width:100%;">🗑 Delete Submission</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('layout-bottom') %>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: "WORKS by JD — Luxury Design-Build Remodeling · North Shore Boston, MA", description: "WORKS by JD is a luxury design-build remodeling company serving the North Shore of Boston since 2001. Kitchens, bathrooms, outdoor living, and whole-home renovations. 7-Year Workmanship Warranty. NARI Certified." }) %>
+<body>
+<%- include('partials/navbar', { activePage: 'home' }) %>
+<%- include('partials/mobile-menu') %>
+<div class="nav-offset"></div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-slideshow" aria-hidden="true">
+    <div class="hero-slide hero-slide-active" style="background-image:url('https://www.worksbyjd.com/wp-content/uploads/2026/03/worksbyjd-beverly-ma-luxury-bathroom-remodel-1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://www.worksbyjd.com/wp-content/uploads/2026/03/worksbyjd-georgetown-ma-remodel-works-georgetown-villa-2-scaled-1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://www.worksbyjd.com/wp-content/uploads/2026/03/hero-main-scaled-1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://www.worksbyjd.com/wp-content/uploads/2026/03/worksbyjd-Lynnfield-ma-whole-home-renovations-4-1.png')"></div>
+    <div class="hero-slide" style="background-image:url('https://www.worksbyjd.com/wp-content/uploads/2026/03/worksbyjd-manchester-by-the-sea-ma-luxury-kitchen-remodel-delicker-2.jpg')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-stats-vertical">
+    <div class="hero-vstat">
+      <div class="hero-vstat-value">24<span class="stat-accent">+</span></div>
+      <div class="hero-vstat-label">Years in Business</div>
+      <div class="hero-vstat-sub">Est. 2001 · Beverly, MA</div>
+    </div>
+    <div class="hero-vstat">
+      <div class="hero-vstat-value">7<span class="stat-accent">yr</span></div>
+      <div class="hero-vstat-label">Workmanship Warranty</div>
+      <div class="hero-vstat-sub">Industry avg. 1–2 years</div>
+    </div>
+    <div class="hero-vstat">
+      <div class="hero-vstat-value">4</div>
+      <div class="hero-vstat-label">NARI Certifications</div>
+      <div class="hero-vstat-sub">CRPM · CR · CKBR · CLC</div>
+    </div>
+    <div class="hero-vstat">
+      <div class="hero-vstat-value">1<span class="stat-accent">00%</span></div>
+      <div class="hero-vstat-label">Design-Build</div>
+      <div class="hero-vstat-sub">One team, start to finish</div>
+    </div>
+  </div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-center">
+      <div class="hero-pill">Design · Build · North Shore Boston · Est. 2001</div>
+      <h1 class="hero-title">
+        Transform Your Home Into the
+        <em>Sanctuary You Deserve</em>
+      </h1>
+      <p class="hero-body">
+        Since 2001, we've helped North Shore homeowners turn renovation stress into dream spaces — without the typical contractor headaches. Our proven Design-Build process puts you in control every step of the way, so you get exactly what you envisioned — on time, on budget, and backed by our 7-Year Warranty.
+      </p>
+      <div class="hero-cta-group">
+        <a href="/contact" class="btn btn-primary btn-lg">Get a Free Consultation</a>
+        <a href="/services" class="btn btn-outline btn-lg">All Services</a>
+      </div>
+      <div class="hero-creds">
+        <span class="hero-creds-item">MA CS-91245</span>
+        <span class="hero-creds-sep">·</span>
+        <span class="hero-creds-item">HIC-178604</span>
+        <span class="hero-creds-sep">·</span>
+        <span class="hero-creds-item">NARI Certified</span>
+        <span class="hero-creds-sep">·</span>
+        <span class="hero-creds-item">Est. 2001</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES MENU ══ -->
+<section class="svc-menu-section">
+  <div class="container">
+    <div class="svc-menu-header">
+      <div class="section-eyebrow">What We Build</div>
+      <h2 class="section-title">Every room. Every vision.</h2>
+    </div>
+    <div class="hero-svc-grid">
+      <a href="/services/kitchens" class="hero-svc-box">
+        <div class="hero-svc-img"><img src="/images/kitchen-remodeling.jpg" alt="Kitchen Remodeling" loading="lazy"></div>
+        <div class="hero-svc-content">
+          <div class="hero-svc-num">01</div>
+          <div class="hero-svc-name">Kitchen Remodeling</div>
+          <div class="hero-svc-price">$40K – $150K+</div>
+        </div>
+      </a>
+      <a href="/services/bathrooms" class="hero-svc-box">
+        <div class="hero-svc-img"><img src="/images/bathroom-remodeling.jpg" alt="Bathroom Remodeling" loading="lazy"></div>
+        <div class="hero-svc-content">
+          <div class="hero-svc-num">02</div>
+          <div class="hero-svc-name">Bathroom Remodeling</div>
+          <div class="hero-svc-price">$25K – $120K+</div>
+        </div>
+      </a>
+      <a href="/services/full-house-remodel" class="hero-svc-box">
+        <div class="hero-svc-img"><img src="/images/home-remodeling.jpg" alt="Home Remodeling" loading="lazy"></div>
+        <div class="hero-svc-content">
+          <div class="hero-svc-num">03</div>
+          <div class="hero-svc-name">Home Remodeling</div>
+          <div class="hero-svc-price">$200K – $700K+</div>
+        </div>
+      </a>
+      <a href="/painting-services" class="hero-svc-box">
+        <div class="hero-svc-img"><img src="/images/painting-services.jpg" alt="Painting Services" loading="lazy"></div>
+        <div class="hero-svc-content">
+          <div class="hero-svc-num">04</div>
+          <div class="hero-svc-name">Painting Services</div>
+          <div class="hero-svc-price">$3K – $40K+</div>
+        </div>
+      </a>
+      <a href="/services/restoration" class="hero-svc-box">
+        <div class="hero-svc-img"><img src="/images/restoration-services.jpg" alt="Restoration Services" loading="lazy"></div>
+        <div class="hero-svc-content">
+          <div class="hero-svc-num">05</div>
+          <div class="hero-svc-name">Restoration Services</div>
+          <div class="hero-svc-price">Custom Pricing</div>
+        </div>
+      </a>
+      <a href="/home-remodeling" class="hero-svc-box">
+        <div class="hero-svc-img"><img src="/images/home-additions.jpg" alt="Home Additions" loading="lazy"></div>
+        <div class="hero-svc-content">
+          <div class="hero-svc-num">06</div>
+          <div class="hero-svc-name">Home Additions</div>
+          <div class="hero-svc-price">$80K – $400K+</div>
+        </div>
+      </a>
+      <a href="/services/outdoor-living" class="hero-svc-box">
+        <div class="hero-svc-img"><img src="/images/outdoor-living.jpg" alt="Outdoor Living" loading="lazy"></div>
+        <div class="hero-svc-content">
+          <div class="hero-svc-num">07</div>
+          <div class="hero-svc-name">Outdoor Living</div>
+          <div class="hero-svc-price">$30K – $200K+</div>
+        </div>
+      </a>
+      <a href="/services/custom-cabinetry" class="hero-svc-box">
+        <div class="hero-svc-img"><img src="/images/custom-cabinetry.jpg" alt="Custom Cabinetry" loading="lazy"></div>
+        <div class="hero-svc-content">
+          <div class="hero-svc-num">08</div>
+          <div class="hero-svc-name">Custom Cabinetry</div>
+          <div class="hero-svc-price">$10K – $80K+</div>
+        </div>
+      </a>
+      <a href="/services/custom-carpentry" class="hero-svc-box">
+        <div class="hero-svc-img"><img src="/images/custom-carpentry.jpg" alt="Custom Carpentry" loading="lazy"></div>
+        <div class="hero-svc-content">
+          <div class="hero-svc-num">09</div>
+          <div class="hero-svc-name">Custom Carpentry</div>
+          <div class="hero-svc-price">$5K – $50K+</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CREDENTIALS STRIP ══ -->
+<div class="cred-strip">
+  <div class="container">
+    <div class="cred-strip-inner">
+      <div class="cred-strip-item">
+        <div class="cred-strip-dot"></div>
+        <span class="cred-strip-text"><strong>NARI Certified</strong> — CRPM · CR · CKBR · CLC</span>
+      </div>
+      <div class="cred-strip-item">
+        <div class="cred-strip-dot"></div>
+        <span class="cred-strip-text"><strong>7-Year Workmanship Warranty</strong> — Industry avg. 1–2 years</span>
+      </div>
+      <div class="cred-strip-item">
+        <div class="cred-strip-dot"></div>
+        <span class="cred-strip-text"><strong>MA Licensed &amp; Insured</strong> — CS-91245 · HIC-178604</span>
+      </div>
+      <div class="cred-strip-item">
+        <div class="cred-strip-dot"></div>
+        <span class="cred-strip-text"><strong>Design-Build since 2001</strong> — Beverly, North Shore</span>
+      </div>
+      <div class="cred-strip-item">
+        <div class="cred-strip-dot"></div>
+        <span class="cred-strip-text"><strong>Private Client Portal</strong> — Real-time project tracking</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HEALTHY HOME ══ -->
+<section class="section-pad" style="background:white;">
+  <div class="container">
+    <div class="healthy-home-grid">
+
+      <!-- Left: intro -->
+      <div class="healthy-home-intro">
+        <div class="section-eyebrow">Built Different</div>
+        <h2 class="section-title healthy-title" style="text-align:left;margin-bottom:24px;">A home that's <span class="healthy-word-1">beautiful</span> <em class="healthy-word-2">and healthy.</em></h2>
+        <p class="section-body-wide" style="margin-bottom:0;">We consider more than aesthetics. Every material, system, and finish we specify is chosen with your family's long-term wellbeing in mind — not just how it looks on day one.</p>
+      </div>
+
+      <!-- Right: feature cards -->
+      <div class="healthy-home-cards">
+        <div class="why-card">
+          <div class="why-title">Air Quality &amp; Ventilation</div>
+          <p class="why-body">We specify low-VOC and zero-VOC paints, finishes, and adhesives throughout. Proper ventilation design — especially in kitchens and bathrooms — ensures your home breathes as cleanly as it looks.</p>
+          <div class="healthy-tag">Materials matter</div>
+        </div>
+        <div class="why-card">
+          <div class="why-title">Natural Light &amp; Circadian Design</div>
+          <p class="why-body">Strategic window placement, skylights, and lighting plans designed to support your body's natural rhythms — not just fill a room. We consider how light moves through your space at every hour of the day.</p>
+          <div class="healthy-tag">Light-first planning</div>
+        </div>
+        <div class="why-card">
+          <div class="why-title">Non-Toxic Materials</div>
+          <p class="why-body">Formaldehyde-free cabinetry, natural stone over synthetic surfaces where appropriate, and hardwood or tile over wall-to-wall carpet. We guide you toward choices that are durable, beautiful, and safe for your family.</p>
+          <div class="healthy-tag">Better selections</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section class="section-pad" style="background:var(--stone-50);">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">3-Step Design-Build Process</h2>
+    </div>
+
+    <div class="process-layout">
+      <div class="timeline">
+        <!-- Step 1 -->
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-num">1</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-body">
+            <div class="section-eyebrow" style="margin-bottom:12px;">Step 1</div>
+            <h3 class="timeline-title">Plan It.</h3>
+            <p class="timeline-desc">Lock in your exact budget and design before we touch a single tool — so you'll never face those dreaded mid-project cost surprises that derail most renovations.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-num">2</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-body">
+            <div class="section-eyebrow" style="margin-bottom:12px;">Step 2</div>
+            <h3 class="timeline-title">Build It.</h3>
+            <p class="timeline-desc">Your dedicated Lead Carpenter treats your home like their own — delivering precision craftsmanship while keeping you informed daily, so you always know what's happening.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-item timeline-item-last">
+          <div class="timeline-marker">
+            <div class="timeline-num timeline-num-accent">3</div>
+          </div>
+          <div class="timeline-body">
+            <div class="section-eyebrow" style="margin-bottom:12px;">Step 3</div>
+            <h3 class="timeline-title">Back It.</h3>
+            <p class="timeline-desc">Walk through your finished dream space with complete confidence — protected by our industry-leading 7-Year Warranty and preserved in professional photography you'll treasure forever.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-diagram">
+        <img src="/processdiagram_nobg.png" alt="WORKS by JD 3-Step Design-Build Process Diagram" loading="lazy">
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:56px;">
+      <a href="/about" class="btn btn-outline btn-lg" style="margin-right:16px;">Learn More</a>
+      <a href="/contact" class="btn btn-primary btn-lg">Start With a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIAL CAROUSEL ══ -->
+<div class="quote-section">
+  <div class="container">
+    <div class="section-eyebrow" style="text-align:center;margin-bottom:32px;">What Clients Say</div>
+    <div class="quote-carousel">
+      <div class="quote-slide quote-slide-active">
+        <div class="quote-block">
+          <p class="quote-text">"The team were professional and hard working — they discovered previously unknown problems and fixed them the right way. You can't go wrong."</p>
+          <div class="quote-attribution">Lyn</div>
+          <div class="quote-attribution-sub">Gloucester, MA · Whole Home Remodel</div>
+        </div>
+      </div>
+      <div class="quote-slide">
+        <div class="quote-block">
+          <p class="quote-text">"An excellent team of true craftsmen. For those who wish to have quality in construction as well as design, WORKS By JD is your team."</p>
+          <div class="quote-attribution">Janice</div>
+          <div class="quote-attribution-sub">Beverly, MA · Kitchen Remodel</div>
+        </div>
+      </div>
+      <div class="quote-slide">
+        <div class="quote-block">
+          <p class="quote-text">"His approach is professional and well managed with unsurpassed quality. I've worked on several projects with Jesse — every single one delivered."</p>
+          <div class="quote-attribution">Brendan</div>
+          <div class="quote-attribution-sub">Ebben Creek Architecture · Multiple Projects</div>
+        </div>
+      </div>
+    </div>
+    <div class="quote-dots">
+      <button class="quote-dot quote-dot-active" aria-label="Review 1"></button>
+      <button class="quote-dot" aria-label="Review 2"></button>
+      <button class="quote-dot" aria-label="Review 3"></button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICE AREAS ══ -->
+<section class="section-pad" style="background:white;">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-eyebrow">Where We Work</div>
+      <h2 class="section-title">Serving the North Shore of Boston</h2>
+      <p class="section-body">From Beverly to Cape Ann — we know these communities and build to match their character.</p>
+    </div>
+    <div class="areas-grid">
+      <a href="/manchester-by-the-sea-home-remodeling-services" class="area-chip">
+        <div class="area-chip-name">Manchester-by-the-Sea</div>
+        <div class="area-chip-dist">North Shore</div>
+      </a>
+      <div class="area-chip">
+        <div class="area-chip-name">Beverly</div>
+        <div class="area-chip-dist">Home Base · Since 2001</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Gloucester</div>
+        <div class="area-chip-dist">Cape Ann</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Rockport</div>
+        <div class="area-chip-dist">Cape Ann</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Essex</div>
+        <div class="area-chip-dist">Cape Ann</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Hamilton</div>
+        <div class="area-chip-dist">North Shore</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Salem</div>
+        <div class="area-chip-dist">North Shore</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Lynnfield</div>
+        <div class="area-chip-dist">North Shore</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Tewksbury</div>
+        <div class="area-chip-dist">Greater Lowell</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Ipswich</div>
+        <div class="area-chip-dist">North Shore</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Newburyport</div>
+        <div class="area-chip-dist">North Shore</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-name">Marblehead</div>
+        <div class="area-chip-dist">North Shore</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA / LEAD FORM ══ -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 480px;gap:80px;align-items:center;position:relative;">
+      <div>
+        <div class="cta-eyebrow">Ready to Start?</div>
+        <h2 class="cta-title" style="text-align:left;margin-left:0;margin-right:0;">
+          Transform your home into the space you <em>deserve.</em>
+        </h2>
+        <p class="cta-body" style="text-align:left;margin-left:0;max-width:460px;">
+          Schedule a free, no-obligation consultation with Jesse DeBenedictis.
+          We'll come to your home, listen to your vision, and show you how the
+          Design-Build process makes it real — on time, on budget, with a
+          7-Year Warranty backing every detail.
+        </p>
+        <div class="trust-badges" style="margin-top:32px;">
+          <div class="trust-badge" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
+            <div class="trust-badge-icon" style="background:var(--ember-500);border-color:var(--ember-600);">🛡️</div>
+            <div>
+              <div class="trust-badge-name" style="color:white;">7-Year Warranty</div>
+              <div class="trust-badge-detail" style="color:var(--forge-400);">Written into every contract</div>
+            </div>
+          </div>
+          <div class="trust-badge" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
+            <div class="trust-badge-icon" style="background:var(--ember-500);border-color:var(--ember-600);">🏅</div>
+            <div>
+              <div class="trust-badge-name" style="color:white;">NARI Certified</div>
+              <div class="trust-badge-detail" style="color:var(--forge-400);">CRPM · CR · CKBR · CLC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card" id="start">
+        <div class="form-title">Start Your Project</div>
+        <div class="form-subtitle">Free consultation · No obligation · North Shore, MA</div>
+        <form class="js-contact-form" novalidate>
+          <div class="form-grid">
+            <div class="form-group form-group-full">
+              <label class="input-label" for="name">Full Name</label>
+              <input class="input" type="text" id="name" name="name" placeholder="Your full name" required/>
+            </div>
+            <div class="form-group">
+              <label class="input-label" for="email">Email</label>
+              <input class="input" type="email" id="email" name="email" placeholder="you@email.com" required/>
+            </div>
+            <div class="form-group">
+              <label class="input-label" for="phone">Phone</label>
+              <input class="input" type="tel" id="phone" name="phone" placeholder="(978) 555-0100"/>
+            </div>
+            <div class="form-group form-group-full">
+              <label class="input-label" for="service">Service Needed</label>
+              <select class="select" id="service" name="service">
+                <option value="">Select a service…</option>
+                <option>Kitchen Remodeling</option>
+                <option>Bathroom Remodeling</option>
+                <option>Outdoor Living</option>
+                <option>Full House Remodel</option>
+                <option>Home Addition</option>
+                <option>Decking</option>
+                <option>Windows &amp; Doors</option>
+                <option>Basement / Attic Finishing</option>
+                <option>Painting &amp; Wallpapering</option>
+                <option>Other / Not Sure</option>
+              </select>
+            </div>
+            <div class="form-group form-group-full">
+              <label class="input-label" for="budget">Approximate Budget</label>
+              <select class="select" id="budget" name="budget">
+                <option value="">Select a range…</option>
+                <option>Under $25,000</option>
+                <option>$25,000 – $50,000</option>
+                <option>$50,000 – $100,000</option>
+                <option>$100,000 – $250,000</option>
+                <option>$250,000 – $500,000</option>
+                <option>$500,000+</option>
+              </select>
+            </div>
+            <div class="form-group form-group-full">
+              <label class="input-label" for="message">Tell Us About Your Project</label>
+              <textarea class="textarea" id="message" name="message" rows="3" placeholder="Describe your project, timeline, and any specific goals…"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-full" style="margin-top:20px;">Schedule My Free Consultation</button>
+          <p class="form-license">Licensed · MA CS-91245 · HIC-178604 · Fully Insured · 7-Year Warranty</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+
+<%- include('partials/footer') %>

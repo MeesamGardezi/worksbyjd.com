@@ -1,0 +1,74 @@
+<%- include('layout-top', { pageTitle: 'Settings', activePage: 'settings' }) %>
+
+<div class="page-header">
+  <h1 class="page-title">Site Settings</h1>
+  <p class="page-subtitle">Manage your business information and social links.</p>
+</div>
+
+<% if (saved) { %>
+  <div class="alert alert-success">Settings saved successfully.</div>
+<% } %>
+
+<form method="POST" action="/admin/settings">
+  <div class="card">
+    <div class="card-title">Business Information</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <input class="form-input" type="tel" name="companyPhone" value="<%= settings.companyPhone || '' %>" placeholder="(978) 555-0100"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" name="companyEmail" value="<%= settings.companyEmail || '' %>" placeholder="info@worksbyjd.com"/>
+      </div>
+      <div class="form-group form-grid-full">
+        <label class="form-label">Business Address</label>
+        <input class="form-input" type="text" name="companyAddress" value="<%= settings.companyAddress || '' %>" placeholder="Beverly, MA"/>
+      </div>
+      <div class="form-group form-grid-full">
+        <label class="form-label">Business Hours</label>
+        <input class="form-input" type="text" name="businessHours" value="<%= settings.businessHours || '' %>" placeholder="Mon — Fri: 8AM — 5PM"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Social Media Links</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Facebook</label>
+        <input class="form-input" type="url" name="socialFacebook" value="<%= settings.socialFacebook || '' %>" placeholder="https://facebook.com/..."/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Instagram</label>
+        <input class="form-input" type="url" name="socialInstagram" value="<%= settings.socialInstagram || '' %>" placeholder="https://instagram.com/..."/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">LinkedIn</label>
+        <input class="form-input" type="url" name="socialLinkedin" value="<%= settings.socialLinkedin || '' %>" placeholder="https://linkedin.com/..."/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Google Business</label>
+        <input class="form-input" type="url" name="socialGoogle" value="<%= settings.socialGoogle || '' %>" placeholder="https://g.page/..."/>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">SEO Defaults</div>
+    <div class="form-grid">
+      <div class="form-group form-grid-full">
+        <label class="form-label">Default Meta Title</label>
+        <input class="form-input" type="text" name="metaTitle" value="<%= settings.metaTitle || '' %>" placeholder="WORKS by JD — Design-Build Remodeling"/>
+      </div>
+      <div class="form-group form-grid-full">
+        <label class="form-label">Default Meta Description</label>
+        <textarea class="form-textarea" name="metaDescription" rows="3" placeholder="North Shore Boston's premier Design-Build remodeling team..."><%= settings.metaDescription || '' %></textarea>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-ember">Save Settings</button>
+</form>
+
+<%- include('layout-bottom') %>

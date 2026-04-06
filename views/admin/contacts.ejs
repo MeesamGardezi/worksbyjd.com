@@ -1,0 +1,48 @@
+<%- include('layout-top', { pageTitle: 'Contacts', activePage: 'contacts' }) %>
+
+<div class="page-header">
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <div>
+      <h1 class="page-title">Contact Submissions</h1>
+      <p class="page-subtitle"><%= contacts.length %> total submissions</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <% if (contacts.length > 0) { %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Service</th>
+          <th>Budget</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% contacts.forEach(function(c) { %>
+        <tr>
+          <td><a href="/admin/contacts/<%= c.id %>"><%= c.fname %> <%= c.lname %></a></td>
+          <td><a href="mailto:<%= c.email %>"><%= c.email %></a></td>
+          <td><%= c.phone || '—' %></td>
+          <td><%= c.service || '—' %></td>
+          <td><%= c.budget || '—' %></td>
+          <td><span class="badge badge-<%= c.status || 'new' %>"><%= c.status || 'new' %></span></td>
+          <td><%= c.timestamp ? new Date(c.timestamp._seconds ? c.timestamp._seconds * 1000 : c.timestamp).toLocaleDateString() : '—' %></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <div class="empty">
+      <div class="empty-icon">📬</div>
+      <p>No contact submissions yet. They'll appear here once visitors submit the contact form.</p>
+    </div>
+  <% } %>
+</div>
+
+<%- include('layout-bottom') %>

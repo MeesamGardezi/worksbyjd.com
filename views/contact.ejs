@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: "Start a Project — WORKS by JD · Free Consultation · Beverly, MA", description: "Schedule a free consultation with WORKS by JD — North Shore Boston's luxury Design-Build remodeling team. No obligation. 7-Year Warranty." }) %>
+<body>
+<%- include('partials/navbar', { activePage: 'contact' }) %>
+<%- include('partials/mobile-menu') %>
+<div class="nav-offset"></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-accent"></div>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Contact</span>
+    </div>
+    <div class="page-hero-eyebrow">Let's Talk</div>
+    <h1 class="page-hero-title">Start Your Project</h1>
+    <p class="page-hero-body">Free, no-obligation consultation. We come to your home, listen to your vision, and show you exactly what's possible.</p>
+  </div>
+</section>
+
+<!-- CONTACT CONTENT -->
+<section class="section-pad bg-bg">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 500px;gap:80px;align-items:start;">
+
+      <!-- Left: Info -->
+      <div>
+        <div class="section-eyebrow">What to Expect</div>
+        <h2 class="section-title">Your free consultation includes:</h2>
+        <div class="includes-list" style="margin-bottom:40px;">
+          <div class="include-item"><div class="include-check">✓</div><span>On-site visit to see your space firsthand</span></div>
+          <div class="include-item"><div class="include-check">✓</div><span>Deep-dive conversation about your goals, style, and must-haves</span></div>
+          <div class="include-item"><div class="include-check">✓</div><span>Honest project assessment — scope, timing, and budget range</span></div>
+          <div class="include-item"><div class="include-check">✓</div><span>Overview of our Design-Build process and what makes it different</span></div>
+          <div class="include-item"><div class="include-check">✓</div><span>No high-pressure sales tactics. No obligation. Ever.</span></div>
+        </div>
+
+        <div class="trust-badges" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="trust-badge">
+            <div class="trust-badge-icon">🏅</div>
+            <div><div class="trust-badge-name">NARI Certified</div><div class="trust-badge-detail">CRPM · CR · CKBR · CLC</div></div>
+          </div>
+          <div class="trust-badge">
+            <div class="trust-badge-icon" style="background:var(--forge-800);border-color:var(--forge-700);">🛡️</div>
+            <div><div class="trust-badge-name">7-Year Warranty</div><div class="trust-badge-detail">Industry avg. 1–2 yrs</div></div>
+          </div>
+          <div class="trust-badge">
+            <div class="trust-badge-icon">📋</div>
+            <div><div class="trust-badge-name">MA Licensed</div><div class="trust-badge-detail" style="font-family:monospace;">CS-91245 · HIC-178604</div></div>
+          </div>
+          <div class="trust-badge">
+            <div class="trust-badge-icon">📅</div>
+            <div><div class="trust-badge-name">Est. 2001</div><div class="trust-badge-detail">24 years experience</div></div>
+          </div>
+        </div>
+
+        <div class="card-stone" style="margin-top:36px;">
+          <div class="card-title" style="color:var(--stone-900);font-size:16px;">Serving the North Shore</div>
+          <p class="card-body">Beverly · Gloucester · Rockport · Essex · Manchester-by-the-Sea · Hamilton · Salem · Ipswich · Tewksbury · Lynnfield · Marblehead · Newburyport</p>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="form-card">
+        <div class="form-title">Let's Talk</div>
+        <div class="form-subtitle">Fill out the form and we'll be in touch within one business day.</div>
+        <form class="js-contact-form" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="input-label" for="fname">First Name</label>
+              <input class="input" type="text" id="fname" name="fname" placeholder="First name" required/>
+            </div>
+            <div class="form-group">
+              <label class="input-label" for="lname">Last Name</label>
+              <input class="input" type="text" id="lname" name="lname" placeholder="Last name" required/>
+            </div>
+            <div class="form-group">
+              <label class="input-label" for="email">Email</label>
+              <input class="input" type="email" id="email" name="email" placeholder="you@email.com" required/>
+            </div>
+            <div class="form-group">
+              <label class="input-label" for="phone">Phone</label>
+              <input class="input" type="tel" id="phone" name="phone" placeholder="(978) 555-0100"/>
+            </div>
+            <div class="form-group form-group-full">
+              <label class="input-label" for="address">Project Address</label>
+              <input class="input" type="text" id="address" name="address" placeholder="123 Main St, Beverly, MA"/>
+            </div>
+            <div class="form-group form-group-full">
+              <label class="input-label" for="service">Service Needed</label>
+              <select class="select" id="service" name="service">
+                <option value="">Select a service…</option>
+                <option>Kitchen Remodeling</option>
+                <option>Bathroom Remodeling</option>
+                <option>Outdoor Living</option>
+                <option>Full House Remodel</option>
+                <option>Home Addition</option>
+                <option>Decking</option>
+                <option>Windows &amp; Doors</option>
+                <option>Basement / Attic Finishing</option>
+                <option>Painting &amp; Wallpapering</option>
+                <option>Other / Not Sure</option>
+              </select>
+            </div>
+            <div class="form-group form-group-full">
+              <label class="input-label" for="budget">Approximate Budget</label>
+              <select class="select" id="budget" name="budget">
+                <option value="">Select a range…</option>
+                <option>Under $25,000</option>
+                <option>$25,000 – $50,000</option>
+                <option>$50,000 – $100,000</option>
+                <option>$100,000 – $250,000</option>
+                <option>$250,000 – $500,000</option>
+                <option>$500,000+</option>
+              </select>
+            </div>
+            <div class="form-group form-group-full">
+              <label class="input-label" for="timeline">Desired Start Date</label>
+              <select class="select" id="timeline" name="timeline">
+                <option value="">Select a timeframe…</option>
+                <option>As soon as possible</option>
+                <option>Within 3 months</option>
+                <option>3–6 months</option>
+                <option>6–12 months</option>
+                <option>Planning ahead — 1+ year</option>
+              </select>
+            </div>
+            <div class="form-group form-group-full">
+              <label class="input-label" for="message">Tell Us About Your Project</label>
+              <textarea class="textarea" id="message" name="message" rows="4" placeholder="Describe what you're envisioning — the more detail, the better we can prepare for your consultation."></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-full" style="margin-top:20px;">Schedule My Free Consultation</button>
+          <p class="form-license">By submitting, you agree to be contacted by WORKS by JD regarding your project. Licensed · MA CS-91245 · HIC-178604 · 7-Year Warranty.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<%- include('partials/footer') %>

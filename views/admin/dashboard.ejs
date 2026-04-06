@@ -1,0 +1,158 @@
+<%- include('layout-top', { pageTitle: 'Dashboard', activePage: 'dashboard' }) %>
+
+<div class="page-header">
+  <h1 class="page-title">Dashboard</h1>
+  <p class="page-subtitle">Overview of your site performance and recent activity.</p>
+</div>
+
+<!-- Stats -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-label">Today's Views</div>
+    <div class="stat-value"><%= todayViews.toLocaleString() %></div>
+    <div class="stat-sub">page views today</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">30-Day Views</div>
+    <div class="stat-value"><%= totalViews.toLocaleString() %></div>
+    <div class="stat-sub">last 30 days</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Total Contacts</div>
+    <div class="stat-value"><%= totalContacts %></div>
+    <div class="stat-sub">form submissions</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Avg Daily</div>
+    <div class="stat-value"><%= dailyStats.length ? Math.round(totalViews / dailyStats.length) : 0 %></div>
+    <div class="stat-sub">views per day</div>
+  </div>
+</div>
+
+<!-- Traffic line chart -->
+<div class="card">
+  <div class="card-title">Daily Traffic — Last 30 Days</div>
+  <% if (dailyStats.length > 0) { %>
+    <div style="position:relative;height:280px;">
+      <canvas id="trafficChart"></canvas>
+    </div>
+  <% } else { %>
+    <div class="empty">
+      <div class="empty-icon">📊</div>
+      <p>No traffic data yet. Data will appear as visitors browse your site.</p>
+    </div>
+  <% } %>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+  <!-- Top pages horizontal bar -->
+  <div class="card">
+    <div class="card-title">Top Pages</div>
+    <% if (topPages.length > 0) { %>
+      <div style="position:relative;height:300px;">
+        <canvas id="pagesChart"></canvas>
+      </div>
+      <table class="table" style="margin-top:16px;">
+        <thead><tr><th>Page</th><th style="text-align:right;">Views</th></tr></thead>
+        <tbody>
+        <% topPages.forEach(function(p) { %>
+          <tr><td><%= p.page %></td><td style="text-align:right;font-weight:600;"><%= p.count %></td></tr>
+        <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="empty"><p>No page data yet.</p></div>
+    <% } %>
+  </div>
+
+  <!-- Recent contacts -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div class="card-title" style="margin-bottom:0;">Recent Contacts</div>
+      <a href="/admin/contacts" class="btn btn-outline btn-sm">View All →</a>
+    </div>
+    <% if (contacts.length > 0) { %>
+      <table class="table">
+        <thead>
+          <tr><th>Name</th><th>Service</th><th>Status</th><th>Date</th></tr>
+        </thead>
+        <tbody>
+        <% contacts.forEach(function(c) { %>
+          <tr>
+            <td><a href="/admin/contacts/<%= c.id %>"><%= c.fname %> <%= c.lname %></a></td>
+            <td><%= c.service || '—' %></td>
+            <td><span class="badge badge-<%= c.status || 'new' %>"><%= c.status || 'new' %></span></td>
+            <td><%= c.timestamp ? new Date(c.timestamp._seconds ? c.timestamp._seconds * 1000 : c.timestamp).toLocaleDateString() : '—' %></td>
+          </tr>
+        <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="empty">
+        <div class="empty-icon">📬</div>
+        <p>No contact submissions yet.</p>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<% if (dailyStats.length > 0) { %>
+<script>
+(function() {
+  var labels = <%- JSON.stringify(dailyStats.slice().reverse().map(function(d){ return d.date; })) %>;
+  var data = <%- JSON.stringify(dailyStats.slice().reverse().map(function(d){ return d.totalViews || 0; })) %>;
+
+  new Chart(document.getElementById('trafficChart'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Page Views',
+        data: data,
+        borderColor: '#C06A2C',
+        backgroundColor: 'rgba(192,106,44,0.08)',
+        fill: true,
+        tension: 0.35,
+        borderWidth: 2.5,
+        pointRadius: 3,
+        pointBackgroundColor: '#C06A2C',
+        pointHoverRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1A1714', padding: 12, cornerRadius: 8 } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#8A7E72', maxTicksLimit: 10 } },
+        y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 11 }, color: '#8A7E72', precision: 0 } }
+      }
+    }
+  });
+
+  <% if (topPages.length > 0) { %>
+  new Chart(document.getElementById('pagesChart'), {
+    type: 'bar',
+    data: {
+      labels: <%- JSON.stringify(topPages.slice(0,8).map(function(p){ return p.page; })) %>,
+      datasets: [{
+        label: 'Views',
+        data: <%- JSON.stringify(topPages.slice(0,8).map(function(p){ return p.count; })) %>,
+        backgroundColor: ['#C06A2C','#D4883E','#E0A05C','#1A1714','#3D352C','#5C4D3E','#8A7E72','#B5AA9C'],
+        borderRadius: 6, borderSkipped: false,
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1A1714', padding: 10, cornerRadius: 8 } },
+      scales: {
+        x: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 11 }, color: '#8A7E72', precision: 0 } },
+        y: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#1A1714' } }
+      }
+    }
+  });
+  <% } %>
+})();
+</script>
+<% } %>
+
+<%- include('layout-bottom') %>

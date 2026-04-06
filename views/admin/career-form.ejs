@@ -1,0 +1,61 @@
+<%- include('layout-top', { pageTitle: career ? 'Edit Position' : 'New Position', activePage: 'careers' }) %>
+
+<div class="page-header">
+  <h1 class="page-title"><%= career ? 'Edit Position' : 'New Position' %></h1>
+  <p class="page-subtitle"><%= career ? 'Update the details for this career opening.' : 'Add a new career opening to the site.' %></p>
+</div>
+
+<div class="card">
+  <form method="POST" action="<%= career ? '/admin/careers/' + career.id : '/admin/careers' %>">
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Job Title</label>
+        <input class="form-input" type="text" name="title" value="<%= career ? career.title : '' %>" required placeholder="e.g. Project Manager">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Type</label>
+        <select class="form-select" name="type">
+          <option value="Full-Time" <%= career && career.type === 'Full-Time' ? 'selected' : '' %>>Full-Time</option>
+          <option value="Part-Time" <%= career && career.type === 'Part-Time' ? 'selected' : '' %>>Part-Time</option>
+          <option value="Contract" <%= career && career.type === 'Contract' ? 'selected' : '' %>>Contract</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Location</label>
+        <input class="form-input" type="text" name="location" value="<%= career ? career.location : 'Beverly, MA' %>" placeholder="e.g. Beverly, MA">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Salary / Pay Range</label>
+        <input class="form-input" type="text" name="salary" value="<%= career ? career.salary : '' %>" placeholder="e.g. $75K–$100K or $30–$42/hr">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Salary Note</label>
+        <input class="form-input" type="text" name="salaryNote" value="<%= career ? career.salaryNote : '' %>" placeholder="e.g. + bonus, based on experience">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Display Order</label>
+        <input class="form-input" type="number" name="order" value="<%= career ? career.order : 0 %>" placeholder="0">
+      </div>
+      <div class="form-group form-grid-full">
+        <label class="form-label">Description</label>
+        <textarea class="form-textarea" name="description" rows="4" placeholder="Brief description of the role and responsibilities."><%= career ? career.description : '' %></textarea>
+      </div>
+      <div class="form-group form-grid-full">
+        <label class="form-label">Requirements (one per line)</label>
+        <textarea class="form-textarea" name="requirements" rows="6" placeholder="3+ years of residential remodeling experience&#10;MA driver's license&#10;..."><%= career ? career.requirements : '' %></textarea>
+      </div>
+      <div class="form-group form-grid-full">
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+          <input type="checkbox" name="active" <%= (!career || career.active) ? 'checked' : '' %> style="width:18px;height:18px;">
+          <span style="font-size:14px;font-weight:600;">Active — show on careers page</span>
+        </label>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:24px;">
+      <button type="submit" class="btn btn-ember"><%= career ? 'Save Changes' : 'Create Position' %></button>
+      <a href="/admin/careers" class="btn btn-outline">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<%- include('layout-bottom') %>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: "Portfolio — WORKS by JD · Luxury Remodeling · North Shore Boston", description: "Portfolio of completed remodeling projects by WORKS by JD — kitchens, bathrooms, whole-home renovations, and outdoor living on the North Shore of Boston." }) %>
+<body>
+<%- include('partials/navbar', { activePage: 'portfolio' }) %>
+<%- include('partials/mobile-menu') %>
+<div class="nav-offset"></div>
+
+<section class="page-hero">
+  <div class="page-hero-accent"></div>
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">/</span><span>Portfolio</span></div>
+    <div class="page-hero-eyebrow">Our Work</div>
+    <h1 class="page-hero-title">Projects that speak <em>for themselves.</em></h1>
+    <p class="page-hero-body">24 years of luxury remodeling on the North Shore of Boston — kitchens, bathrooms, whole-home renovations, and outdoor living spaces built to last.</p>
+  </div>
+</section>
+
+<section class="section-pad" style="background:white;">
+  <div class="container">
+    <div style="max-width:600px;margin:0 auto;text-align:center;padding:40px 0 80px;">
+      <div class="section-eyebrow">Coming Soon</div>
+      <h2 class="section-title">Our portfolio is on its way.</h2>
+      <p style="font-size:16px;line-height:1.7;color:var(--color-body-muted);margin-bottom:36px;">We're putting together a showcase of our finest work. In the meantime, reach out and we'll walk you through recent projects during your free consultation.</p>
+      <a href="/contact" class="btn btn-primary btn-lg">Schedule a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
